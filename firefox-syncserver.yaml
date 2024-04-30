@@ -1,0 +1,24 @@
+version: "3.2"
+
+services:
+  firefox-syncserver:
+    image: crazymax/firefox-syncserver:latest
+    container_name: firefox-syncserver
+    ports:
+      - target: 5000
+        published: 5000
+        protocol: tcp
+    environment:
+      - TZ=Europe/Berlin
+      - PUID=1000
+      - PGID=1000
+      - FF_SYNCSERVER_ACCESSLOG=true
+      - FF_SYNCSERVER_LOGLEVEL=debug
+      - FF_SYNCSERVER_PUBLIC_URL=https://website.com
+      - FF_SYNCSERVER_SECRET=XXXX
+      - FF_SYNCSERVER_ALLOW_NEW_USERS=true
+      - FF_SYNCSERVER_FORCE_WSGI_ENVIRON=true
+      - FF_SYNCSERVER_SQLURI=
+    volumes:
+      - "/home/pi/firefox-syncserver/data:/data"
+    restart: unless-stopped

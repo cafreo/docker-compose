@@ -1,0 +1,16 @@
+version: "2.1"
+
+services:
+  freshrss:
+    image: linuxserver/freshrss:latest
+    container_name: freshrss
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - CRON_MIN=15
+    volumes:
+      - /home/pi/freshrss/config:/config
+    ports:
+      - 8181:80
+    restart: unless-stopped

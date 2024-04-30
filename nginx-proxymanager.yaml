@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  nginx-pm:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx-pm  
+    ports:
+      - 80:80 # Public HTTP Port
+      - 443:443 # Public HTTPS Port
+      - 81:81 # Admin Web Port
+      # Add any other Stream port you want to expose
+      # - '21:21' # FTP
+    environment:
+      # Uncomment this if IPv6 is not enabled on your host
+      DISABLE_IPV6: 'true'
+    volumes:
+      - /home/pi/nginx-pm/data:/data
+      - /home/pi/nginx-pm/letsencrypt:/etc/letsencrypt
+    restart: unless-stopped
+

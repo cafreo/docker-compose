@@ -1,0 +1,13 @@
+version: "3.0"
+
+services:
+  apache-webserver:
+    image: httpd:alpine
+    container_name: startpage1
+    volumes:
+      - /path/to/html/page/:/usr/local/apache2/htdocs/:ro
+    ports:
+      - 1323:80
+      - 1324:443
+    restart: unless-stopped
+

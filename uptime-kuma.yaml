@@ -1,0 +1,12 @@
+version: "3.0"
+
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:alpine
+    container_name: uptime-kuma
+    volumes:
+      - /home/pi/uptime-kuma/app/data:/app/data
+    ports:
+      - 3001:3001
+    restart: unless-stopped
+

@@ -1,0 +1,13 @@
+version: "3.0"
+
+services:
+  nginx-webserver:
+    image: nginx:alpine-slim
+    container_name: startpage2
+    volumes:
+      - /path/to/html/page:/usr/share/nginx/html:ro
+    ports:
+      - 1321:80
+      - 1322:443
+    restart: unless-stopped
+

@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    ports:
+      - 4533:4533
+    environment:
+      ND_SCANSCHEDULE: 20m
+      ND_LOGLEVEL: info  
+      ND_BASEURL: ""
+      ND_MUSICFOLDER: "/music"
+      ND_DATAFOLDER: "/data"
+      ND_AUTOIMPORTPLAYLISTS: true
+      ND_PLAYLISTSPATH: "Playlists/Import"
+      ND_ENABLECOVERANIMATION: false
+      ND_RECENTLYADDEDBYMODTIME: true
+      ND_ENABLEDOWNLOADS: true
+      ND_SESSIONTIMEOUT: 72h
+      ND_SCANNER_EXTRACTOR: ffmpeg
+      ND_ENABLEMEDIAFILECOVERART: true
+      ND_COVERARTPRIORITY: embedded, cover.*, folder.*, front.*, external
+      ND_COVERJPEGQUALITY: 75
+      ND_ENABLEREPLAYGAIN: true
+      ND_JUKEBOX_ENABLED: true
+      ND_SPOTIFY_ID: XXXX
+      ND_SPOTIFY_SECRET: XXXX
+      ND_LASTFM_APIKEY: XXXX
+      ND_LASTFM_SECRET: XXXX
+      ND_LASTFM_ENABLED: true
+      ND_UIWELCOMEMESSAGE: Pass the Aux, Homie!
+    volumes:
+      - "/home/pi/navidrome/data:/data"
+      - "/path/to/music:/music:ro"
+    restart: unless-stopped
